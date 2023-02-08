@@ -1,5 +1,0 @@
-how do hit points work?
-
-==========
-
-Hit points (HP) are a measure of a character's health in role-playing games. They represent the amount of damage a character can take before being knocked out or killed. When a character takes damage, their hit points are reduced. When a character's hit points reach zero, they are usually knocked out or killed. In some games, characters can also gain hit points through healing spells or items.

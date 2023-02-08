@@ -84,10 +84,6 @@ def gpt3_completion(prompt, engine='text-davinci-003', temp=0.0, tokens=512, top
             text = response['choices'][0]['text'].strip()
             text = re.sub('[\r\n]+', '\n', text)
             text = re.sub('[\t ]+', ' ', text)
-            filename = '%s_gpt3.txt' % datetime.time()
-            if not os.path.exists('gpt3_logs'):
-                os.makedirs('gpt3_logs')
-            save_file('gpt3_logs/%s' % filename, prompt + '\n\n==========\n\n' + text)
             return text
         except Exception as oops:
             retry += 1
