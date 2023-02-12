@@ -177,7 +177,7 @@ async def on_ready():
 if __name__ == "__main__":
     openai.api_key = os.environ.get('OPENAI_API_KEY')
     TOKEN = os.environ.get('RULES_LAWYER_TOKEN')
-    CHAN_ID = int(os.environ.get('RULES_LAWYER_CHANNEL_ID'))
+    CHAN_ID = os.environ.get('RULES_LAWYER_CHANNEL_ID')
     try:
         client.run(TOKEN)
     except Exception as oops:
