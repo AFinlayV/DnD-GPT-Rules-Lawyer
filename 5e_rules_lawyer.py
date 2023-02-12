@@ -21,8 +21,6 @@ from numpy.linalg import norm
 import numpy as np
 import discord
 
-with open("/Users/alexthe5th/Documents/API Keys/OpenAI_API_key.txt", "r") as f:
-    openai.api_key = f.read().strip()
 
 
 def open_file(filepath):
