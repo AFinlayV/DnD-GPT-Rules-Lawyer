@@ -3,6 +3,9 @@ Ok... So
 I want to build a script that is a discord bot that uses semantic search of the 5e rules to answer questions
 using gpt3 to generate answers to questions. May not even need the semantic search, as gpt3 can probably
 do most of it from the foundation model.
+
+TODO:
+    [ ] Check token length of context and trim/summarize/semantic search if too long
 """
 import asyncio
 import re
@@ -174,12 +177,9 @@ async def on_ready():
 
 
 if __name__ == "__main__":
-    with open("/Users/alexthe5th/Documents/API Keys/OpenAI_API_key.txt", "r") as f:
-        key = f.read().strip()
-        openai.api_key = key
-    auth = load_json('/Users/alexthe5th/Documents/API Keys/RulesLawyerAuth.txt')
-    TOKEN = auth['token'].strip()
-    CHAN_ID = int(auth['chan_id'].strip())
+    openai.api_key = os.environ.get('OPENAI_API_KEY')
+    TOKEN = os.environ.get('RULES_LAWYER_TOKEN')
+    CHAN_ID = int(os.environ.get('RULES_LAWYER_CHANNEL_ID'))
     try:
         client.run(TOKEN)
     except Exception as oops:
