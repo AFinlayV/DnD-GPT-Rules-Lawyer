@@ -80,7 +80,7 @@ def process_message(discord_message):
     try:
         query = discord_message
         top = fetch_rule(SRD, query)
-        rules = ' '.join(top)
+        rules = ' '.join(top)[:4096]
         prompt = f"""
                 I am a dungeon master named "RulesLawyer" and I have been asked a question about the rules of Dungeons and Dragons.
                 I will only answer questions based on the rules given below, and I will not say anything that can't be inferred from them.
