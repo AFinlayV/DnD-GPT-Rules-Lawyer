@@ -74,7 +74,6 @@ def gpt3_completion(prompt, engine='text-davinci-003', temp=0.0, tokens=256, top
 
 
 def process_message(discord_message):
-    discord_text = discord_message
     try:
         query = discord_message
         top = fetch_rule(SRD, query)
@@ -116,8 +115,7 @@ async def lawyer(ctx, *args):
 
 if __name__ == "__main__":
     openai.api_key = os.environ.get('OPENAI_API_KEY')
-    TOKEN = os.environ.get('RULES_LAWYER_DISCORD_TOKEN')
     try:
-        bot.run(TOKEN)
+        bot.run(os.environ.get('RULES_LAWYER_DISCORD_TOKEN'))
     except Exception as oops:
         print('Error in main:', oops)
