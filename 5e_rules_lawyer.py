@@ -4,8 +4,6 @@ I want to build a script that is a discord bot that uses semantic search of the 
 using gpt3 to generate answers to questions. May not even need the semantic search, as gpt3 can probably
 do most of it from the foundation model.
 
-TODO:
-    [ ] Check token length of context and trim/summarize/semantic search if too long
 """
 import asyncio
 from time import sleep
