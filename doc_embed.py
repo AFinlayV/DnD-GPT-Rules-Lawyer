@@ -27,7 +27,7 @@ def load_json(filepath):
 
 def save_json(filepath, payload):
     with open(filepath, 'w', encoding='utf-8') as outfile:
-        json.dump(payload, outfile, ensure_ascii=False, sort_keys=True, indent=2)
+        json.dump(payload, outfile, ensure_ascii=False, sort_keys=True, indent=4)
 
 
 def gpt3_embedding(content, engine='text-embedding-ada-002'):
@@ -51,11 +51,11 @@ def crawl_file_structure(path):
 def parse_file(filepath):
     print(f'Parsing {filepath}')
     content = open_file(filepath)
-    content = re.sub(r'#+', '', content)
-    content = re.sub(r'\n{2,}',
-                     '   ', content)  # replace 2 or more newlines with 3 spaces
-    content = re.sub(r'\n', ' ', content)  # replace newlines with spaces
-    content = re.sub(r' {2,}', ' ', content)  # replace 2 or more spaces with 1 space
+    # content = re.sub(r'#+', '', content)  # remove all #s
+    # content = re.sub(r'\n{2,}',  # replace 2 or more newlines with 3 spaces
+    #                  '   ', content)  # replace 2 or more newlines with 3 spaces
+    # content = re.sub(r'\n', ' ', content)  # replace newlines with spaces
+    # content = re.sub(r' {2,}', ' ', content)  # replace 2 or more spaces with 1 space
     return content
 
 
@@ -77,22 +77,16 @@ print('is it even running this?')
 with open('/Users/alexthe5th/Documents/API Keys/OpenAI_API_key.txt', 'r') as f:
     openai.api_key = f.read().strip()
 print(openai.api_key)
-path = '/Users/alexthe5th/PycharmProjects/5thSRD/docs/'
+path = '/Users/alexthe5th/PycharmProjects/DND.SRD.Wiki'
 files = crawl_file_structure(path)
 for filepath in files:
     content = parse_file(filepath)
     sections = split_into_sections(content)
+    srd = {}
     for section in sections:
         print(f'Embedding {section}...')
         vector = gpt3_embedding(section)
-        # check to see if srd.json exists
-        if not os.path.exists('/Users/alexthe5th/PycharmProjects/rules_lawyer/docs/srd.json'):
-            # if not create it
-            with open('/Users/alexthe5th/PycharmProjects/rules_lawyer/docs/srd.json', 'w') as f:
-                json.dump({}, f)
-        # append to a json file with the text as the key and the vector as the value
-        with open('/Users/alexthe5th/PycharmProjects/rules_lawyer/docs/srd.json', 'r') as f:
-            doc_embeds = json.load(f)
-        doc_embeds[section] = vector
-        with open('/Users/alexthe5th/PycharmProjects/rules_lawyer/docs/srd.json', 'w') as f:
-            json.dump(doc_embeds, f)
+        srd[section] = vector
+save_json('/Users/alexthe5th/PycharmProjects/DnD-GPT-Rules-Lawyer/docs/srd.json', srd)
+
+

@@ -32,6 +32,7 @@ from numpy.linalg import norm
 import numpy as np
 import disnake
 from disnake.ext import commands
+import markdown
 
 
 def load_json(filename):
@@ -39,7 +40,8 @@ def load_json(filename):
         return json.load(f)
 
 
-SRD = load_json('docs/srd.json')
+with open('docs/old/srd.json') as f:
+    SRD = json.load(f)
 intents = disnake.Intents.all()
 bot = commands.Bot(intents=intents,
                    command_prefix='/')
@@ -60,7 +62,7 @@ def similarity(v1, v2):
 def fetch_rule(query, count=1):
     qvector = gpt3_embedding(query)
     scores = {}
-    # use similarity() to compare the qvector to the vector of each rule, then return the top 5
+    # use similarity() to compare the qvector to the vector of each rule, then return the top <count> rules
     for rule in SRD:
         scores[rule] = similarity(qvector, SRD[rule])
     top = sorted(scores, key=scores.get, reverse=True)[:count]
@@ -119,10 +121,17 @@ def process_message(discord_message):
         return {'output': 'Error in process_message: %s' % oops}
 
 
+def convert_markdown(markdown_text):
+    # Convert the Markdown to HTML
+    html_text = markdown.markdown(markdown_text)
+    return html_text
+
+
+
 async def send_response(ctx, discord_text, response):
     chunk_size = 1500
     user = ctx.author.name
-    # discord_text = convert_markdown(discord_text)
+    discord_text = convert_markdown(discord_text)
     try:
         if not ctx.author.bot:
             if len(response) > chunk_size:
