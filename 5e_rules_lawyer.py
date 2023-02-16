@@ -130,6 +130,18 @@ async def lawyer(ctx, *args):
     except Exception as oops:
         await ctx.channel.send(f'Error: {oops} \n {user}: {discord_text[:20]}...')
 
+@bot.command()
+async def rules(ctx, *args):
+    discord_text = " ".join(args)
+    user = ctx.author.name
+    try:
+        if not ctx.author.bot:
+            response = await asyncio.get_event_loop().run_in_executor(None, fetch_rule, discord_text)
+            await ctx.send(response)
+    except Exception as oops:
+        await ctx.channel.send(f'Error: {oops} \n {user}: {discord_text[:20]}...')
+
+
 
 if __name__ == "__main__":
     openai.api_key = os.environ.get('OPENAI_API_KEY')
