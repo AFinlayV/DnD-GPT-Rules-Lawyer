@@ -1,9 +1,27 @@
 """
 Ok... So
 I want to build a script that is a discord bot that uses semantic search of the 5e rules to answer questions
-using gpt3 to generate answers to questions. May not even need the semantic search, as gpt3 can probably
-do most of it from the foundation model.
+using gpt3 to generate answers to questions. Use doc_embed.py to embed documents and then use the embeddings to
+answer questions.
 
+commands to add:
+- !help - list commands
+- !rules - return the relevant rule rather than answering a question
+- !spell - return the full text of a spell
+- !monster - return the full text of a monster
+- !item - return the full text of an item
+
+New Features:
+- lore - A way to add lore form a specific game to the docs and refernce it.
+- dialog generator - generate dialog for a character
+- npc generator - generate an npc
+- monster generator - generate a monster
+- item generator - generate an item
+- add character - add a character to the docs
+- private mode - only allow the DM to see the results of a question
+- public mode - allow anyone to see the results of a question
+- history check - roll a history check for a character and reference the lore in docs to determine how much the character
+    knows about the lore
 """
 import asyncio
 from time import sleep
@@ -24,7 +42,7 @@ def load_json(filename):
 SRD = load_json('docs/srd.json')
 intents = disnake.Intents.all()
 bot = commands.Bot(intents=intents,
-                   command_prefix='!')
+                   command_prefix='/')
 
 
 def gpt3_embedding(content, engine='text-embedding-ada-002'):
