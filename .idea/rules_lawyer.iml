@@ -6,9 +6,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="discord_bot_sandbox" />
     <orderEntry type="module" module-name="dnd5-srd" />
-    <orderEntry type="module" module-name="docs" />
     <orderEntry type="module" module-name="DND.SRD.Wiki" />
   </component>
 </module>

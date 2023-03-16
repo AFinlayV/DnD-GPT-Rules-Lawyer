@@ -2,17 +2,22 @@
 Ok... So
 I want to build a script that is a discord bot that uses semantic search of the 5e rules to answer questions
 using gpt3 to generate answers to questions. Use doc_embed.py to embed documents and then use the embeddings to
-answer questions.
+answer questions. redo the embeddings on the /json folder. I think the json format might be easier for GPT to understand.
 
-commands to add:
-- !help - list commands
-- !rules - return the relevant rule rather than answering a question
-- !spell - return the full text of a spell
-- !monster - return the full text of a monster
-- !item - return the full text of an item
+A DM/Player helper bot. The bot will be able to answer questions about the rules, generate dialog, generate npcs, generate
+monsters, generate items, and generate characters. The bot will also be able to store and reference character stats with embeddings
+to use for semantic search.
 
-New Features:
-- lore - A way to add lore form a specific game to the docs and refernce it.
+
+
+Feature Ideas:
+- chatgpt 3.5 - integrate GPT 3.5 / 4 formatting into the bot. Potentially use separate "assistant" messages to include individual
+    rules, spells, classes etc as context. Use Embedding, Semantic search and recursive summary to generate each assistant message.
+- Some way to store and reference character stats... Probably a json file with embeddings?
+- Inventory management
+- recursive summary function.
+- players can do QA over their specific available actions?
+- lore - A way to add lore form a specific game to the docs and reference it.
 - dialog generator - generate dialog for a character
 - npc generator - generate an npc
 - monster generator - generate a monster
@@ -22,6 +27,26 @@ New Features:
 - public mode - allow anyone to see the results of a question
 - history check - roll a history check for a character and reference the lore in docs to determine how much the character
     knows about the lore
+- whisper - record and summarize sessions to a google doc
+
+/commands to add:
+- /help - list commands
+- /rules - return the relevant rule rather than answering a question
+- /spell - return the full text of a spell
+- /monster - return the full text of a monster
+- /item - return the full text of an item
+- /lore - return the full text of a lore entry
+- /dialog - generate dialog for a character
+- /npc - generate an npc
+- /monster - generate a monster
+- /item - generate an item
+- /add - add a character to the docs
+- /private - only allow the DM to see the results of a question
+- /public - allow anyone to see the results of a question
+- /history - roll a history check for a character and reference the lore in docs to determine how much the character
+    knows about the lore
+- /summarize - summarize a session, rule or aspect of a character's state
+
 """
 import asyncio
 from time import sleep

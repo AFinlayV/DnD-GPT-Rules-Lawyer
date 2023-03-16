@@ -4,25 +4,10 @@ I want to build a script that is a discord bot that uses semantic search of the 
 using gpt3 to generate answers to questions. Use doc_embed.py to embed documents and then use the embeddings to
 answer questions.
 
-commands to add:
-- !help - list commands
-- !rules - return the relevant rule rather than answering a question
-- !spell - return the full text of a spell
-- !monster - return the full text of a monster
-- !item - return the full text of an item
-
-New Features:
-- lore - A way to add lore form a specific game to the docs and refernce it.
-- dialog generator - generate dialog for a character
-- npc generator - generate an npc
-- monster generator - generate a monster
-- item generator - generate an item
-- add character - add a character to the docs
-- private mode - only allow the DM to see the results of a question
-- public mode - allow anyone to see the results of a question
-- history check - roll a history check for a character and reference the lore in docs to determine how much the character
-    knows about the lore
+This is a thrown together version. currenty working on a new version in the ..._beta.py version, but I'm keeping this
+one up because it's currently running on a couple of servers.
 """
+
 import asyncio
 from time import sleep
 import openai
@@ -148,11 +133,13 @@ async def send_response(ctx, discord_text, response):
     except Exception as oops:
         await ctx.channel.send(f'Error: {oops} \n {user}: {discord_text[:20]}...')
 
+
 @bot.command()
 async def lawyer(ctx, *args):
     discord_text = " ".join(args)
     response = await asyncio.get_event_loop().run_in_executor(None, process_message, discord_text)
     await send_response(ctx, discord_text, response)
+
 
 @bot.command()
 async def rules(ctx, *args):
@@ -160,7 +147,6 @@ async def rules(ctx, *args):
     response = await asyncio.get_event_loop().run_in_executor(None, fetch_rule, discord_text)
     for rule in response:
         await send_response(ctx, discord_text, rule)
-
 
 
 if __name__ == "__main__":

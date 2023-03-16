@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../DND.SRD.Wiki/.idea/DND.SRD.Wiki.iml" filepath="$PROJECT_DIR$/../DND.SRD.Wiki/.idea/DND.SRD.Wiki.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../discord_bot_sandbox/.idea/discord_bot_sandbox.iml" filepath="$PROJECT_DIR$/../discord_bot_sandbox/.idea/discord_bot_sandbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/../dnd5-srd/.idea/dnd5-srd.iml" filepath="$PROJECT_DIR$/../dnd5-srd/.idea/dnd5-srd.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../5thSRD/docs/.idea/docs.iml" filepath="$PROJECT_DIR$/../5thSRD/docs/.idea/docs.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/rules_lawyer.iml" filepath="$PROJECT_DIR$/.idea/rules_lawyer.iml" />
     </modules>
   </component>
